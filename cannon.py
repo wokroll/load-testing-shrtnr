@@ -70,7 +70,7 @@ class Cannon:
         return response
 
     def __get_shrtner(self, url):
-        response = requests.get(f"{url}/r/gist")
+        response = requests.get(f"{url}/r/gist", allow_redirects=False)
         return response
 
     def _shoot(self, rand: List[float], qps: int, url: str, threads: int = 10) -> float:
