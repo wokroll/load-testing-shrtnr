@@ -15,3 +15,4 @@ URL = "http://localhost:8080"
 if __name__ == '__main__':
     cannon = Cannon(URL)
     latencies = cannon.start_shoot(qps=10, duration=5, threads=5)
+    print(latencies)

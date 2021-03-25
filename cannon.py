@@ -2,6 +2,7 @@ import requests
 import time
 import random
 import logging
+import json
 from typing import List
 from concurrent.futures import ThreadPoolExecutor, wait
 
@@ -9,16 +10,34 @@ from utils import up_micronaut, down_micronaut, clean_db
 
 
 logger = logging.getLogger(__name__)
+HEADERS = {"Content-Type": "application/json"}
 
 
 class AppManager:
 
     app = None
 
+    def __init__(self, url):
+        self.url = url
+
+    def __setup(self):
+        requests.post(f"{self.url}/signup", headers=HEADERS,
+                      data=json.dumps({"username": "test2332", "password": "test2"}))
+        resp = requests.post(f"{self.url}/signin", headers=HEADERS,
+                      data=json.dumps({"username": "test2332", "password": "test2"}))
+        token = resp.json()["access_token"]
+        headers = {"Content-Type": "application/json",
+                   "Authorization": f"Bearer {token}"}
+        requests.post(f"{self.url}/urls/shorten", headers=headers,
+                      data=json.dumps({"url": "https://google.com", "alias": "gist"}))
+
+
     def __enter__(self):
         clean_db()
         self.app = up_micronaut()
         logger.info("Up Micronaut app!")
+        time.sleep(2)
+        self.__setup()
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         down_micronaut(self.app)
@@ -39,15 +58,15 @@ class Cannon:
         self._URL = url
 
     def __login(self, url):
-        response = requests.post(url)
+        response = requests.post(url, headers=HEADERS)
         return response
 
     def __signup(self, url):
-        response = requests.post(url)
+        response = requests.post(url, headers=HEADERS)
         return response
 
     def __set_shrtnr(self, url):
-        response = requests.post(url)
+        response = requests.post(url, headers=HEADERS)
         return response
 
     def __get_shrtner(self, url):
@@ -93,10 +112,7 @@ class Cannon:
             set = self.SET_C
         random_api = [login, sign_up, get, set]
 
-        with AppManager():
-
-            # Initialize app
-            time.sleep(2)
+        with AppManager(self._URL):
             with ThreadPoolExecutor(threads) as executor:
                 res = [executor.submit(self._shoot, random_api, qps, self._URL, threads)
                        for _ in range(qps*duration)]
