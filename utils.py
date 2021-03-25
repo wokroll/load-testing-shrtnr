@@ -2,7 +2,7 @@ import os
 import signal
 import subprocess
 import time
-
+from pathlib import Path
 
 # Місце де знаходиться url-shrtnr
 HOME = os.getenv("HOME")
@@ -22,6 +22,9 @@ def down_micronaut(app):
 
 
 def clean_db():
-    os.remove(f"{PATH_SHRTNR}/users.json")
-    os.remove(f"{PATH_SHRTNR}/tokens.json")
-    os.remove(f"{PATH_SHRTNR}/alias.json")
+    if os.path.exists(f"{PATH_SHRTNR}/users.json"):
+        os.remove(f"{PATH_SHRTNR}/users.json")
+    if os.path.exists(f"{PATH_SHRTNR}/tokens.json"):
+        os.remove(f"{PATH_SHRTNR}/tokens.json")
+    if os.path.exists(f"{PATH_SHRTNR}/alias.json"):
+        os.remove(f"{PATH_SHRTNR}/alias.json")
