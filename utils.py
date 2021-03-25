@@ -1,15 +1,20 @@
 import os
+import sys
 import signal
 import subprocess
-import time
-from pathlib import Path
 
 # Місце де знаходиться url-shrtnr
-HOME = os.getenv("HOME")
-PATH_SHRTNR = f"{HOME}/labs/url-shrtnr-le-gushqua"
-
-JAVA_HOME = "/usr/lib/jvm/java-15-openjdk"
-CMD = f"{PATH_SHRTNR}/gradlew run -p {PATH_SHRTNR} -Dorg.gradle.java.home={JAVA_HOME}"
+if sys.platform == 'win32':
+    """Not Implemented"""
+    HOME = os.getenv("HOME")
+    PATH_SHRTNR = f"{HOME}/labs/url-shrtnr-le-gushqua"
+    JAVA_HOME = "C:\\Program Files\\Java\\"
+    CMD = f"{PATH_SHRTNR}\\gradlew.bat run -p {PATH_SHRTNR} -Dorg.gradle.java.home={JAVA_HOME}"
+else:
+    HOME = os.getenv("HOME")
+    PATH_SHRTNR = f"{HOME}/labs/url-shrtnr-le-gushqua"
+    JAVA_HOME = "/usr/lib/jvm/java-15-openjdk"
+    CMD = f"{PATH_SHRTNR}/gradlew run -p {PATH_SHRTNR} -Dorg.gradle.java.home={JAVA_HOME}"
 
 
 def up_micronaut():
