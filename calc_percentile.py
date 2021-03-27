@@ -3,7 +3,7 @@ import pandas as pd
 
 def calc_percentile(percentile, latency_list):
     select = percentile * len(latency_list)
-    return sorted(latency_list[int(select)])
+    return sorted(latency_list)[int(select)]
 
 
 def create_dataframe():
