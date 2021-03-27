@@ -37,10 +37,10 @@ class Cannon:
     """Клас який в выдповідає за те щоб "бомбити" сервіс"""
 
     # Пропорції скільки яких викликів викликатиметься
-    LOGIN_C = 0.1
-    SIGNUP_C = 0.1
-    SET_C = 60
-    GET_C = 1
+    LOGIN_C = 0.5
+    SIGNUP_C = 0.5
+    SET_C = 1
+    GET_C = 98
 
     TEST_EMAIL = 'test'
     TEST_PASS = 'test'
