@@ -17,4 +17,5 @@ if __name__ == '__main__':
     df.plot(x ="QPS(queries per second)", y="Latency, 50%", kind = 'line')
     df.plot(x ="QPS(queries per second)", y="Latency, 90%", kind = 'line')
     df.plot(x ="QPS(queries per second)", y="Latency, 99%", kind = 'line')
+    df.plot(x ="QPS(queries per second)", y="Error rate", kind = 'line')
     plt.show()
