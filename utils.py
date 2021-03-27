@@ -12,7 +12,7 @@ if sys.platform == 'win32':
     CMD = f"{PATH_SHRTNR}\\gradlew.bat run -p {PATH_SHRTNR} -Dorg.gradle.java.home={JAVA_HOME}"
 else:
     HOME = os.getenv("HOME")
-    PATH_SHRTNR = f"{HOME}/labs/url-shrtnr-le-gushqua"
+    PATH_SHRTNR = f"{HOME}/labs/url-shrtnr-pepegasquad-tests"
     JAVA_HOME = "/usr/lib/jvm/java-15-openjdk"
     CMD = f"{PATH_SHRTNR}/gradlew run -p {PATH_SHRTNR} -Dorg.gradle.java.home={JAVA_HOME}"
 
@@ -27,9 +27,7 @@ def down_micronaut(app):
 
 
 def clean_db():
-    if os.path.exists(f"{PATH_SHRTNR}/users.json"):
-        os.remove(f"{PATH_SHRTNR}/users.json")
-    if os.path.exists(f"{PATH_SHRTNR}/tokens.json"):
-        os.remove(f"{PATH_SHRTNR}/tokens.json")
-    if os.path.exists(f"{PATH_SHRTNR}/alias.json"):
-        os.remove(f"{PATH_SHRTNR}/alias.json")
+    if os.path.exists(f"{PATH_SHRTNR}/user-repository.json"):
+        os.remove(f"{PATH_SHRTNR}/user-repository.json")
+    if os.path.exists(f"{PATH_SHRTNR}/url-repository.json"):
+        os.remove(f"{PATH_SHRTNR}/url-repository.json")

@@ -1,12 +1,6 @@
-import time
 import logging
 
-from utils import (
-    up_micronaut,
-    down_micronaut,
-    clean_db
-)
-from cannon import  Cannon
+from cannon import Cannon
 
 
 logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
